@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import PostForm from "./component/PostForm";
 import PostList from "./component/PostList";
 import "./style/app.css"
@@ -6,35 +6,14 @@ import PostFilter from "./component/PostFilter";
 import Divided from "./component/UI/divideLine/divided";
 import MyModel from "./component/UI/MyModal/myModel";
 import MyButton from "./component/UI/button/MyButton";
+import { usePosts } from "./hooks/usePost";
 
 
 const App = () => {
-  const [posts, setPosts] = useState([
-    { id: 1, title: "JavaScript", body: "Some text" },
-    { id: 2, title: "Css", body: "Some text" },
-    { id: 3, title: "Html", body: "Some text" },
-    { id: 4, title: "C++", body: "Some text" },
-    { id: 5, title: "C##", body: "Some text" },
-  ])
-
+  const [posts, setPosts] = useState([])
   const [filter, setFilter] = useState({ sort: "", query: "" })
   const [visible, setVisible] = useState(false);
-
-
-  const sortedPost = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort((a, b) => { return a[filter.sort].localeCompare(b[filter.sort]) })
-    } else {
-      return posts
-    }
-  }, [filter.sort, posts])
-
-  const sortedAndSerchedPosts = useMemo(() => {
-    return sortedPost.filter(post => post.title.toLocaleLowerCase().includes(filter.query.toLocaleLowerCase()))
-
-  }, [filter.query, sortedPost])
-
-
+  const sortedAndSerchedPosts = usePosts(posts, filter.sort, filter.query)
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
     setVisible(false)
@@ -44,7 +23,7 @@ const App = () => {
   }
   return (
     <>
-      <MyButton onClick={()=> setVisible(!visible)}>
+      <MyButton onClick={() => setVisible(!visible)}>
         Create post
       </MyButton>
       <MyModel visible={visible} setVisible={setVisible}>
