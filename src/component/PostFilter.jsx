@@ -5,7 +5,6 @@ import MySelect from './UI/select/MySelect';
 
 
 const PostFilter = ({ filter, setFilter }) => {
-    console.log(setFilter);
     return (
         <div>
             <MyInput

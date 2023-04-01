@@ -3,8 +3,9 @@ import PostForm from "./component/PostForm";
 import PostList from "./component/PostList";
 import "./style/app.css"
 import PostFilter from "./component/PostFilter";
-
-
+import Divided from "./component/UI/divideLine/divided";
+import MyModel from "./component/UI/MyModal/myModel";
+import MyButton from "./component/UI/button/MyButton";
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
   ])
 
   const [filter, setFilter] = useState({ sort: "", query: "" })
+  const [visible, setVisible] = useState(false);
 
 
   const sortedPost = useMemo(() => {
@@ -34,26 +36,30 @@ const App = () => {
 
 
   const createPost = (newPost) => {
-    setPosts([...posts, newPost])
+    setPosts([...posts, newPost]);
+    setVisible(false)
   }
   const removePost = (post) => {
     setPosts(posts.filter(el => el.id !== post.id))
   }
   return (
     <>
-      <PostForm createPost={createPost} />
-      <hr />
-
-      < PostFilter 
-        filter={filter} 
-        setFilter={setFilter} 
+      <MyButton onClick={()=> setVisible(!visible)}>
+        Create post
+      </MyButton>
+      <MyModel visible={visible} setVisible={setVisible}>
+        <PostForm createPost={createPost} />
+      </MyModel>
+      <Divided />
+      <PostFilter
+        filter={filter}
+        setFilter={setFilter}
       />
-      {
-        sortedAndSerchedPosts.length !== 0
-          ? <PostList removePost={removePost} posts={sortedAndSerchedPosts} title={"List post №1"} />
-
-          : <h1>List post is empty</h1>
-      }
+      <PostList
+        removePost={removePost}
+        posts={sortedAndSerchedPosts}
+        title={"List post №1"}
+      />
     </>
   );
 }

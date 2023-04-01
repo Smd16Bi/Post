@@ -4,6 +4,12 @@ import PostItem from "./PostItem";
 
 
 const PostList = ( {posts,title,removePost}) => {
+
+    if (!posts.length) {
+        return  <h1>List is empty</h1>
+    } 
+
+
     let result = posts.map((el,index) => {
         return (
             <PostItem
