@@ -9,7 +9,7 @@ const PostForm = ({ createPost }) => {
     const addNewPost = (event) => {
         event.preventDefault();
         let newPost = {
-            ...post, id: Date.now
+            ...post, id: Date.now()
         }
         createPost(newPost)
         setPost({ title: "", body: "" })
