@@ -1,0 +1,10 @@
+.myInput {
+    padding: 5px 15px;
+    color: teal;
+    width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    background-color: transparent;
+    border: 1px solid teal;
+    cursor: pointer;
+}
