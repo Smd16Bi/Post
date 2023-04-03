@@ -43,3 +43,47 @@ hr {
     transform: translateX(-350px);
     transition: all 500ms ease-in;
 }
+
+.current_page {
+    background-color: teal;
+    color: #fff;
+}
+
+.page {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid teal;
+    padding: 5px;
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    background-color: #ccc;
+}
+.navbar >*:not(:last-child) {
+    margin-right: 15px;
+}
+
+.navbar_item {
+    list-style: none;
+}
+.navbar_item  a{ 
+    color: teal;
+    text-decoration: none;
+
+}
+
+.post_btns {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}

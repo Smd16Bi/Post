@@ -1,5 +1,4 @@
 import React from "react"
-import style from "./MySelect.module.css"
 
 const MySelect = ({ options, defaultValue, value, onChange }) => {
     let option = options.map((el) => {
